@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import './App.css'
+import './DogViewer.css'
 
 type Dog = {
   breed: string,
@@ -34,7 +34,6 @@ const DogViewer = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("Loading dogs, hang tight...");
   const hasFetched = useRef<boolean>(false);
-
   useEffect(() => {
     if (hasFetched.current) return;
     hasFetched.current = true;
@@ -51,8 +50,10 @@ const DogViewer = () => {
 
         setMainDog(newMainDog);
         setThumbnailDogs([...thumbDogs]);
+        setMessage("OK");
       } catch (error) {
-        setMessage("We couldn't find any dogs ):");
+        const errorMessage = error instanceof Error ? error.message : "We couldn't find any dogs ):";
+        setMessage(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -64,7 +65,7 @@ const DogViewer = () => {
   return (
     <>
       <h1>Dog Viewer</h1>
-      {loading ? (
+      {loading || message !== "OK" ? (
         <p>{message}</p>
       )
         :

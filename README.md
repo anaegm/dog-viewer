@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+# Dog Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hi there! :) Thank you for checking out my Dog Viewer assignment. I adhered to the time-limit of the assignment and focused on part #1 of it, especially if I wanted to make the code look nice and clean. With that in mind, I focused on the functionality on the app and kept the styling at a minimum (other than what was required, of course); though I did come back a few hours later to quickly implement this README file and a couple of unit tests.
 
-Currently, two official plugins are available:
+So, you have two options to interact with the app depending on what you want to do!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Option #1: Clone the repository
 
-## React Compiler
+From your terminal/console, navigate to the folder where you want this repository to live, and go ahead and clone it:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```git clone https://github.com/anaegm/dog-viewer.git```
 
-## Expanding the ESLint configuration
+When the command finishes running, navigate to the new directory where this project now lives:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```cd dog-viewer```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+And install all necessary packages:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```npm install```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Run the project, and see it live on your localhost!
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```npm run dev```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The address should be: http://localhost:5173/
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Option #2: See the app 
+
+If you just want to take a quick peek at the app itself without bothering with the code, you can see it in this link too!
+
+https://anaegm-dog-viewer.netlify.app/
+
+Happy holidays :)
+
+Ana Guajardo
