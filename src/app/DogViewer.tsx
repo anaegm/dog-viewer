@@ -33,6 +33,7 @@ const DogViewer = () => {
   const [thumbnailDogs, setThumbnailDogs] = useState<Dog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("Loading dogs, hang tight...");
+  const [searchInput, setSearchInput] = useState<string>("");
   const hasFetched = useRef<boolean>(false);
   useEffect(() => {
     if (hasFetched.current) return;
@@ -64,27 +65,34 @@ const DogViewer = () => {
 
   return (
     <>
+      <input value={searchInput} onChange={e => setSearchInput(e.target.value)} />
       <h1>Dog Viewer</h1>
       {loading || message !== "OK" ? (
         <p>{message}</p>
       )
-        :
-        (
-          <>
-            <figure className="main-dog">
-              <img className="main-dog__img" src={mainDog.image} alt={mainDog.breed} />
-              <figcaption className="main-dog__name">{mainDog.breed}</figcaption>
-            </figure>
-            <div className="other-dogs">
-              {thumbnailDogs.map((dog, index) => (
-                <figure className="dog-card" key={`dog-${index}`}>
-                  <img className="dog-card__img" src={dog.image} alt={dog.breed} onClick={() => setMainDog({ breed: dog.breed, image: dog.image })} />
-                  <figcaption className="dog-card__name">{dog.breed}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </>
-        )
+      :
+      (
+        <>
+          { mainDog.breed.toLowerCase().startsWith(searchInput.toLowerCase()) ?
+            (
+              <figure className="main-dog">
+                <img className="main-dog__img" src={mainDog.image} alt={mainDog.breed} />
+                <figcaption className="main-dog__name">{mainDog.breed}</figcaption>
+              </figure>
+            )
+            :
+            (<></>)
+          }
+          <div className="other-dogs">
+            {thumbnailDogs.filter(dog => dog.breed.toLowerCase().startsWith(searchInput.toLowerCase())).map((dog, index) => (
+              <figure className="dog-card" key={`dog-${index}`}>
+                <img className="dog-card__img" src={dog.image} alt={dog.breed} onClick={() => setMainDog({ breed: dog.breed, image: dog.image })} />
+                <figcaption className="dog-card__name">{dog.breed}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </>
+      )
       }
     </>
   )
